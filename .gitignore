@@ -1,0 +1,8 @@
+.DS_Store
+.tmp
+.sass-cache
+workspace.xml
+.idea/
+.sass-cache/
+validation-status.json
+node_modules/

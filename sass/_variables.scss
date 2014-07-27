@@ -1,0 +1,42 @@
+///////////////////////////////////////////////////
+// PROJECT VARIABLES
+///////////////////////////////////////////////////
+/* Directories */
+$theme_dir: '/content/themes/mytheme/';
+$images_dir: '/content/themes/mytheme/images/';
+
+/* Colors */
+$color_body_copy: #444;
+$color_link: #26527c;
+$color_opposite: #fff;
+
+/* Font Sizes */
+$size_base: 1em;
+
+$base-font-url: "fonts/";
+
+//
+// declares the rest of the font stack
+// usage:
+// selector {
+//  font-family: @font-Reg, @font-stack;
+// }
+//
+$font-stack:"arial, helvetica, sans-serif";
+
+//
+// Sprite Image Path
+//
+
+$sprites: sprite-map("sprite/*.png",$spacing: 20px);
+$sprites2x: sprite-map("spriteRetina/*.png",$spacing: 40px);
+
+
+//
+// Vendor
+//
+
+
+
+
+

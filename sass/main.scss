@@ -1,0 +1,34 @@
+//------>
+//Default theme Styles - feel free to remove it  ;)
+@import '_themeDefault/theme';
+//<------
+/*
+@Author:
+Project:
+Date:
+*/
+//
+// Compass
+//
+@import "compass/utilities/sprites";         // Include compass sprite helpers
+@import "compass/css3/background-size";      // Include helper to calc background size
+
+@import "sprite/*.png";
+@import "spriteRetina/*.png";
+//
+// Let's call the others style sheets
+//
+@import '_variables';
+@import '_normalize';
+@import '_bootstrap';
+@import '_animations';
+
+@import '_mixins';
+@import '_helper';
+@import '_fonts';
+@import '_global';
+@import '_header';
+@import '_footer';
+
+@import '_content';
+//Sections

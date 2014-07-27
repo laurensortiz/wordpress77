@@ -1,0 +1,191 @@
+///////////////////////////////////////////////////
+// MIXINS
+///////////////////////////////////////////////////
+//Global  --------------------->
+@mixin inline-block(){
+  display: inline-block;
+  margin-right: -3px;
+}
+// IE7 inline-block ##
+@mixin ie7-inline-block() {
+  *display: inline; /* IE7 inline-block hack */
+  *zoom: 1;
+}
+// All Prefix
+@mixin prefix($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+// Place Holders
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+// Border Radius
+@mixin border-radius($size){
+  -webkit-border-radius: $size+px;
+  -moz-border-radius: $size+px;
+  border-radius: $size+px;
+}
+//-------------------------------<
+//Layout Elements --------------->
+@mixin center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin vertical-align {
+  @include prefix(transform, translateY(-50%));
+  position: relative;
+  top: 50%;
+}
+//-------------------------------<
+//Pseudo Elements --------------->
+@mixin pseudoElement($width, $height){
+  display: inline-block;
+  content: "";
+  width:$width+px;
+  height:$height+px;
+
+}
+//-------------------------------<
+//Form Elements ----------------->
+//-------------------------------<
+
+//Font -------------------------->
+// RadioShack
+@mixin rsk-font-face ($font) {
+  $font-path: "#{$base-font-url}#{$font-effra-prepend}#{$font}#{$font-effra-append}";
+  @font-face {
+    @include font-face($font, $font-path);
+  }
+}
+// @font-face
+@mixin font-face($fontname, $fontfile) {
+  font-family: "#{$fontname}";
+  src: url("#{$fontfile}.eot");
+  src: url("#{$fontfile}.eot?#iefix") format("embedded-opentype"),
+  url("#{$fontfile}.woff") format("woff"),
+  url("#{$fontfile}.ttf") format("truetype"),
+  url("#{$fontfile}.svg##{$fontname}") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+// Set the font-size
+@mixin font-size($fontSize:12,$lineHeight:auto,$vaValue:auto){
+  $sizeToEm : ($fontSize/12)+em;
+  $va : ($vaValue/1000)+em;
+  font-size: $sizeToEm;
+  letter-spacing: $va;
+  @if $lineHeight != auto{
+    line-height : ($lineHeight/$fontSize)+em;
+  }
+  @else{
+    line-height : ($fontSize/$fontSize)+em
+  }
+}
+//-------------------------------<
+//Background -------------------->
+// Retina Background
+@mixin retina-background($file-1x, $file-2x, $width-1x, $height-1x) {
+  background-image: url($file-1x);
+  background-size: $width-1x $height-1x;
+  background-repeat: no-repeat;
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url($file-2x);
+    background-size: $width-1x $height-1x;
+  }
+}
+// Retina Sprite
+@mixin retina-sprite($name) {
+  background-image: sprite-url($sprites);
+  background-position: sprite-position($sprites, $name);
+  background-repeat: no-repeat;
+  height: image-height(sprite-file($sprites, $name));
+  width: image-width(sprite-file($sprites, $name));
+  @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 2) {
+    background-image: sprite-url($sprites2x);
+    background-position: 0 round(nth(sprite-position($sprites2x, $name), 2) / 2);
+    height: round(image-height(sprite-file($sprites2x, $name)) / 2);
+    width: round(image-width(sprite-file($sprites2x, $name)) /2 );
+    background-size:(ceil(image-width(sprite-path($sprites2x)) / 2) auto);
+  }
+}
+//-------------------------------<
+
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin text-field {
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+  @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
+}
+
+@mixin button($color: $red, $text_color: $white) {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 2em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+  @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
+
+  color: $text_color !important;
+  font-weight: bold;
+  border: solid 1px darken($color, 18%);
+  background: $color;
+  @include gradient(saturate($color, 15%), darken($color, 15%));
+
+  &:hover {
+    text-decoration: none;
+    background: saturate($color, 10%);
+    @include gradient(saturate($color, 5%), darken($color, 5%));
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+    color: saturate($color, 15%);
+    @include gradient(saturate($color, 15%), lighten($color, 15%));
+  }
+}
+
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin gradient($from, $to) {
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background: -moz-linear-gradient(top,  $from, $to);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}

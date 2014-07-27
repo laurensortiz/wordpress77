@@ -1,0 +1,29 @@
+///////////////////////////////////////////////////
+// GLOBAL
+///////////////////////////////////////////////////
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box; //this can be removed in due time
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+body{
+  font-size: 16px;
+
+}
+
+
+h1,h2,h3,h4,h5,h6{
+  font-weight: normal;
+  margin: 0;
+
+}

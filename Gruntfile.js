@@ -107,20 +107,6 @@ module.exports = function (grunt) {
         src: ['test/spec/{,*/}*.js']
       }
     },
-    // // Empties folders to start fresh
-    // clean: {
-    //   dist: {
-    //     files: [{
-    //       dot: true,
-    //       src: [
-    //         '.tmp',
-    //         '<%= digital77.dist %>/*',
-    //         '!<%= digital77.dist %>/.git*'
-    //       ]
-    //     }]
-    //   },
-    //   server: '.tmp'
-    // },
 
     // Add vendor prefixed styles
     autoprefixer: {

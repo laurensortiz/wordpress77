@@ -1,4 +1,4 @@
-# wordpress77 v0.0.1
+# wordpress77 v0.0.2
 
 ## Getting Started
 

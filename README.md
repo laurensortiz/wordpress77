@@ -2,11 +2,10 @@
 
 ## Getting Started
 
+### Go to the theme folder -> cd {content}/themes/{themeName}
 ```shell
 npm install 
 ```
-
-### Go to the theme folder -> cd {content}/themes/{themeName}
 
 #### Let's install all bower dependencies
 ```shell
